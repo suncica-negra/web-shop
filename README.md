@@ -4,7 +4,7 @@ _English_
 
 A simple but functional web shop.
 
-Tools Used: **HTML, CSS, JavaScript, Node.js, Express.js**
+Tools Used: **HTML, CSS, JavaScript, Node.js, Express.js, MongoDB**
 
 The app is functional and is online: https://my-awesome-web-shop.herokuapp.com
 
@@ -14,7 +14,7 @@ _Croatian_
 
 Jednostavan, ali funkcionalan web shop.
 
-Korišteni alati: **HTML, CSS, JavaScript, Node.js, Express.js**
+Korišteni alati: **HTML, CSS, JavaScript, Node.js, Express.js, MongoDB**
 
 Aplikacija je funkcionalna i online je: https://my-awesome-web-shop.herokuapp.com
 
