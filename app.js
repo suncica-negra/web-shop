@@ -51,7 +51,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-mongoose.connect("mongodb+srv://dea:test-123@cluster0.0fmas.mongodb.net/web-shopDB", {
+mongoose.connect("mongodb+srv://dea:password@cluster0.0fmas.mongodb.net/web-shopDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
