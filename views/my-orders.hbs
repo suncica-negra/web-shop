@@ -1,0 +1,36 @@
+<div class="margin">
+   <div class="row mb-3 row1">
+      <div class="col-md-12  themed-grid-col">
+         <h1 class="main">My orders:</h1>
+         {{# each orders }}
+         <div class="card">
+            <div class="card-header">
+               <h5>Total order price: <strong>{{ this.basket.totalPrice }} €</strong></h5>
+               <h5>Price charged: <strong>{{ this.paidPrice }} €</strong></h5>
+            </div>
+            <div class="card-body">
+               <blockquote class="blockquote mb-0">
+                  <table>
+                     <tr>
+                        <th>Product name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                     </tr>
+                     {{# each this.items }}
+                     <tr>
+                        <td>{{ this.item.name }}</td>
+                        <td>{{ this.qty }} Item(s)</td>
+                        <td>{{ this.price}} €</td>
+                     </tr>
+                     {{/each}}
+                  </table>
+                  <footer class="blockquote-footer margin-top">Order date: {{ this.date }}</cite></footer>
+               </blockquote>
+               <br>
+            </div>
+         </div>
+         <br>
+         {{/each}}
+      </div>
+   </div>
+</div>

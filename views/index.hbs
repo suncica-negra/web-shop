@@ -1,0 +1,17 @@
+<div class="margin">
+   <div class="row mb-3 row1">
+      <div class="themed-grid-col data">
+         <h1 class="main">See what we have and choose something for yourself</h1>
+         {{# each products }}
+         <div class="responsive ">
+            <div class="gallery ">
+               <a href="/product/{{this._id}}">
+               <img src="{{this.link}}" alt="product" width="600" height="400">
+               </a>
+               <div class="desc">{{this.name}} <br> {{this.price}} €</div>
+            </div>
+         </div>
+         {{/each}}
+      </div>
+   </div>
+</div>

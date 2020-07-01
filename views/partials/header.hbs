@@ -1,0 +1,20 @@
+<div class="sticky">
+   <hr class="hr">
+   <div class="right">
+      <p class="test d-table-cell"><a href="/"><img class="img" src="/title-test.png" title="Home" alt="title-test"></a> - Web Shop</p>
+      {{# if login }}
+      <div class="d-table-cell tar">
+         <a type="submit" class="btn btn-light btn-sm letter" id="register" title="Your orders" href="/my-orders">{{ korisnik }}<img class="img7" src="/caret.png" alt="caret"></a>
+         <a type="submit" class="btn btn-secondary btn-sm letter" id="testovi" href="/basket"><img class="img5" src="/basket.png" alt="basket">Basket <span class="badge badge-danger">{{ totalQty }}</span></a>
+         <a type="submit" class="btn btn-danger btn-sm letter" id="odjava" href="/logout">Logout</a>    
+      </div>
+      {{ else }}
+      <div class="d-table-cell tar">
+         <a type="submit" class="btn btn-secondary btn-sm letter" id="testovi" href="/basket"><img class="img5" src="/basket.png" alt="basket">Basket <span class="badge badge-danger">{{ totalQty }}</span></a>
+         <a type="submit" class="btn btn-primary btn-sm letter" id="register1" href="/register">Register</a>
+         <a type="submit" class="btn btn-success btn-sm letter" id="prijava" href="/login">Login</a>      
+      </div>
+      {{/if}}
+   </div>
+   <hr class="hr1">
+</div>

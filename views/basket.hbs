@@ -1,0 +1,129 @@
+<div class="margin">
+   <div class="row mb-3 row1">
+      <div class="col-md-12 themed-grid-col data">
+         {{# if items }}
+         <h1 class="main">Your products ready to order:</h1>
+         <div class="error hidden" id="motion">
+            <p>Don't miss the "3 Motion sensors for 65.00 EUR" campaign!</p>
+         </div>
+         <div class="error hidden" id="smoke">
+            <p>Don't miss the "2 Smoke Sensors for 35.00 EUR" campaign!</p>
+         </div>
+         <div class="row">
+            <div class="col">
+               <ul class="list-group">
+                  {{# each items }}
+                  <li class="list-group-item" id="li">
+                     <strong>{{ this.item.name }}</strong> 
+                     <span class="badge badge-success badge2">Price: {{ this.price }} €</span> 
+                     <span> </span>
+                     <span class="badge badge-pill badge-primary badge2">Quantity: {{ this.qty }}</span> 
+                     <a href="/increase/{{ this.item._id }}" class="badge badge-info badge2">Quantity +</a>
+                     <a href="/reduce/{{ this.item._id }}" class="badge badge-info badge2">Quantity -</a>
+                     <a href="/remove/{{ this.item._id }}" class="badge badge-info badge2">Remove All</a>
+                  </li>
+                  {{/each}}
+               </ul>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col">
+               <span class="badge badge-success badge1"><strong>Total: {{ totalPrice }} €</strong></span>
+            </div>
+         </div>
+         <hr class="hr">
+         <h2 class="srednji">Choose some of the following discounts:</h2>
+         <form id="form">
+            <input id="oldTotalPrice" type="text" name="oldTotalPrice" value="{{ totalPrice }}" hidden>
+            <div class="srednji">
+               <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="percent20" value="20">
+                  <label class="form-check-label" for="defaultCheck1">
+                  20%OFF -  20% off final cost cannot be used in conjunction with other codes
+                  </label>
+               </div>
+               <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="percent5" value="5">
+                  <label class="form-check-label" for="defaultCheck1">
+                  5%OFF - 5% off final cost can be used in conjunction with other codes
+                  </label>
+               </div>
+               <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="eur20" value="20">
+                  <label class="form-check-label" for="defaultCheck2">
+                  20EUROFF - 20  EUR off final cost can be used in conjunction with other codes
+                  </label>
+               </div>
+            </div>
+         </form>
+         <form action="/checkout" method="POST">
+            <div class="row margin-top">
+               <div class="col">
+                  <p class="newTotalPrice">The price you pay in €:</p>
+                  <input class="form-control-plaintext newTotalPrice error" type="text" name="newTotalPrice" id="newTotalPrice" value="{{ totalPrice }}" readonly>
+               </div>
+            </div>
+            <h2 class="srednji">Checkout</h2>
+            <p class="error usklicnik"><span class="triangle">&#9888;</span> You must be logged in to purchase product(s)!</p>
+            <div class="textAlign">
+               <div class="card">
+                  <div class="card-body">
+                     <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter Name and Surname" name="name" required>
+                     </div>
+                     <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" class="form-control" placeholder="Enter Address" name="address" required>
+                     </div>
+                     <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter email" name="email" required>
+                     </div>
+                     <div class="form-group">
+                        <label for="card-name">Card Holder Name</label>
+                        <input type="text" id="card-name" class="form-control" placeholder="Enter Card Holder Name" name="cardName" required>
+                     </div>
+                     <div class="form-group">
+                        <label for="card-number">Credit Card Number</label>
+                        <input type="number" id="card-number" class="form-control" placeholder="Enter Credit Card Number" name="cardNumber" required>
+                     </div>
+                     <div class="row">
+                        <div class="form-group col-sm-6">
+                           <label for="exp-month">Expiration Month</label>
+                           <input type="number" id="exp-month" class="form-control" placeholder="Enter Expiration Month" name="expMonth" min="1" max="12" required>
+                        </div>
+                        <div class="form-group col-sm-6">
+                           <label for="exp-year">Expiration Year</label>
+                           <input type="number" id="expYear" class="form-control" placeholder="Enter Expiration Year" name="expYear" min="2020" max="9999" required>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="cvc">CVC</label>
+                        <input type="number" id="cvc" class="form-control" placeholder="Enter CVC" name="cvc" required>
+                     </div>
+                     <button type="submit" class="btn btn-success">Buy now</button>
+         </form>
+         </div>
+         </div>
+         </div>
+         {{ else }}
+         <div class="margin">
+            <div class="row mb-3 row1">
+               <div class="col-md-12 themed-grid-col data">
+                  <div class="error">
+                     <h5>You have no items in your shopping basket &#128546;</h5>
+                     <img src="/error.png" class="img6" title="Izvor: Pixabay" alt="error">
+                  </div>
+                  <script>
+                     setTimeout(function(){
+                     history.back();
+                           }, 3000)
+                  </script>
+               </div>
+            </div>
+         </div>
+         {{/if}}
+      </div>
+   </div>
+</div>
