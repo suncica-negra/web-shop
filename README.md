@@ -6,7 +6,7 @@ A simple but functional web shop.
 
 Tools Used: **HTML, CSS, JavaScript, Node.js, Express.js, MongoDB**
 
-The app is functional and is online: https://my-awesome-web-shop.herokuapp.com
+The app is functional and online: https://my-awesome-web-shop.herokuapp.com
 
 ********************************************
 
