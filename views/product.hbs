@@ -5,14 +5,24 @@
 </div>
 <div class="margin">
 <div class="row mb-3 row1">
-<div class="themed-grid-col data">
+<div class="themed-grid-col">
+<div class="row">
+<div class="col-lg-8 item">
+<span class="notify-badge">{{ product.action }}</span>
+<img class="img1" src="{{ product.link }}" alt="{{ product.name }}" title="Source: Unsplash">
+</div>
+<div class="col-lg-4 data">
+<br>
 <h1 class="main">Information about the <strong><em>{{ product.name }}</em></strong></h1>
 <p>Product code: <br> {{ product._id }}</p>
 <p>Product name: <br> {{ product.name }}</p>
 <p>Product price: <br> {{ product.price }} €</p>
-<p>Product description: <br> {{ product.description }}</p>
 <p id="action" class="error ">{{product.bannerMessage}}</p>
-<img class="img1" src="{{ product.link }}" alt="{{ product.name }}" title="Source: Unsplash">
+</div>
+<div class="col-lg-12">
+<p>Product description: <br> {{ product.description }}</p>
+</div>
+</div>
 </div>
 </div>
 </form>

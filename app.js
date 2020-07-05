@@ -51,7 +51,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-mongoose.connect("mongodb+srv://dea:password@cluster0.0fmas.mongodb.net/web-shopDB", {
+mongoose.connect("mongodb+srv://username:password@cluster0.0fmas.mongodb.net/web-shopDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
@@ -72,6 +72,7 @@ const userSchema = new mongoose.Schema({
 });
 
 const productSchema = new mongoose.Schema({
+  action: String,
   action2: Boolean,
   price2: Number,
   action3: Boolean,
@@ -81,7 +82,11 @@ const productSchema = new mongoose.Schema({
   name: String,
   price: Number,
   link: String,
-  description: String
+  description: String,
+  username: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  }
 });
 
 const orderSchema = new mongoose.Schema({
@@ -302,7 +307,7 @@ function Basket(oldBasket) {
   };
 };
 
-app.get("/", async function (req, res) {
+app.get("/", function (req, res) {
   if (!req.session.passport) {
     var korisnik = "";
   } else {
@@ -314,9 +319,8 @@ app.get("/", async function (req, res) {
   } else {
     totalQty = req.session.basket.totalQty;
   }
-
   Product.find({}).sort({
-    price: 1
+    price: -1
   }).exec(function (err, products) {
 
     res.render("index", {
@@ -325,6 +329,158 @@ app.get("/", async function (req, res) {
       totalQty: totalQty
     });
   });
+});
+
+app.get("/insert-product", isLoggedIn, function (req, res) {
+  var korisnik = req.session.passport.user;
+  if (!req.session.basket) {
+    var totalQty = "";
+  } else {
+    totalQty = req.session.basket.totalQty;
+  }
+  res.render("insert-product", {
+    korisnik: korisnik,
+    totalQty: totalQty
+  });
+});
+
+app.post("/insert-product", isLoggedIn, function (req, res) {
+  var korisnik = req.session.passport.user;
+  if (!req.session.basket) {
+    var totalQty = "";
+  } else {
+    totalQty = req.session.basket.totalQty;
+  }
+  User.findOne({
+    username: korisnik
+  }, function (err, user) {
+    var userId = user._id;
+    const product = new Product({
+      action: req.body.action,
+      action2: req.body.action2,
+      price2: req.body.price2,
+      action3: req.body.action3,
+      price3: req.body.price3,
+      bannerMessage: req.body.bannerMessage,
+      identifier: req.body.identifier,
+      name: req.body.name,
+      price: req.body.price,
+      link: req.body.link,
+      description: req.body.description,
+      username: userId,
+    });
+    product.save(function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.redirect("/");
+      }
+    });
+  });
+});
+
+app.get("/my-products", isLoggedIn, function (req, res) {
+  var korisnik = req.session.passport.user;
+  if (!req.session.basket) {
+    var totalQty = "";
+  } else {
+    totalQty = req.session.basket.totalQty;
+  }
+  Product.find({
+    username: req.user
+  }).sort({
+    price: 1
+  }).exec(function (err, products) {
+    if (err) {
+      console.log(err);
+      return res.write("Error!");
+    } else {
+      res.render("my-products", {
+        korisnik: korisnik,
+        totalQty: totalQty,
+        products: products
+      });
+    }
+  });
+});
+
+app.get("/edit/:productId", isLoggedIn, function (req, res) {
+  var korisnik = req.session.passport.user;
+  var productId = req.params.productId;
+  if (!req.session.basket) {
+    var totalQty = "";
+  } else {
+    totalQty = req.session.basket.totalQty;
+  }
+  Product.findOne({
+    _id: productId
+  }, function (err, product) {
+    const name = product.name;
+    const price = product.price;
+    const link = product.link;
+    const description = product.description;
+    res.render("edit", {
+      korisnik: korisnik,
+      totalQty: totalQty,
+      productId: productId,
+      name: name,
+      price: price,
+      link: link,
+      description: description
+    });
+  });
+});
+
+app.put("/edit/:productId", isLoggedIn, function (req, res) {
+  var korisnik = req.session.passport.user;
+  var productId = req.params.productId;
+  if (!req.session.basket) {
+    var totalQty = "";
+  } else {
+    totalQty = req.session.basket.totalQty;
+  }
+  Product.findOneAndUpdate({
+    _id: productId
+  }, {
+    $set: {
+      action: req.body.action,
+      action2: req.body.action2,
+      price2: req.body.price2,
+      action3: req.body.action3,
+      price3: req.body.price3,
+      bannerMessage: req.body.bannerMessage,
+      identifier: req.body.identifier,
+      name: req.body.name,
+      price: req.body.price,
+      link: req.body.link,
+      description: req.body.description
+    }
+  }, {
+    new: true
+  }, function (err, product) {
+    if (!err) {
+      console.log("Success!");
+    }
+    res.redirect("/my-products");
+  });
+});
+
+app.delete("/delete/:productId", isLoggedIn, function (req, res) {
+  var korisnik = req.session.passport.user;
+  var productId = req.params.productId;
+  if (!req.session.basket) {
+    var totalQty = "";
+  } else {
+    totalQty = req.session.basket.totalQty;
+  }
+  Product.findOneAndDelete({
+    _id: productId
+  }, function (err, res) {
+    if (!err) {
+      console.log("Success!");
+    }
+  });
+  res.redirect("/my-products");
 });
 
 app.get("/my-orders", isLoggedIn, function (req, res) {

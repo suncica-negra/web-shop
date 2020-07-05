@@ -1,0 +1,44 @@
+<div class="margin">
+   <div class="row mb-3 row1">
+      <div class="themed-grid-col data">
+         <h1 class="main">Products I sell:</h1>
+         {{# if products }}
+         {{# each products }}
+         <div class="responsive ">
+            <div class="gallery ">
+               <a href="/product/{{this._id}}">
+                  <div class="item1">
+                     <span class="text-block">{{ this.action }}</span>
+                     <img src="{{this.link}}" alt="product" width="600" height="400">
+                  </div>
+               </a>
+               <div class="desc">
+                  <a type="submit" class="btn btn-success btn-sm letter" href="/edit/{{this._id}}">Edit</a>
+                  <br><br>
+                  <form action="/delete/{{this._id}}?_method=DELETE" method="POST">
+                     <a href="/delete/{{this._id}}?_method=DELETE"><button type="submit" class="btn btn-danger btn-sm letter">Delete</button></a>
+                  </form>
+               </div>
+            </div>
+         </div>
+         {{/each}}
+         {{ else }}
+         <div class="margin">
+            <div class="row mb-3 row1">
+               <div class="col-md-12 themed-grid-col data">
+                  <div class="error">
+                     <h5>You have no items to sell &#128546;</h5>
+                     <img src="/error.png" class="img6" title="Izvor: Pixabay" alt="error">
+                  </div>
+                  <script>
+                     setTimeout(function(){
+                     history.back();
+                           }, 3000)
+                  </script>
+               </div>
+            </div>
+         </div>
+         {{/if}}
+      </div>
+   </div>
+</div>

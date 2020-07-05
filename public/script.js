@@ -78,3 +78,61 @@ function SearchS() {
 	});
 }
 SearchS();
+
+function Action(){
+	document.getElementById("hidden").classList.remove("hidden");
+	document.getElementById("bannerMessage").classList.remove("hidden");
+	document.getElementById("inlineCheckbox1").checked = true;
+}
+
+function NoAction(){
+	document.getElementById("hidden").classList.add("hidden");
+	document.getElementById("gridCheck1").checked = false;
+	document.getElementById("gridCheck2").checked = false;
+	document.getElementById("gridCheck3").checked = false;
+	document.getElementById("hidden1").classList.add("hidden");
+	document.getElementById("hidden2").classList.add("hidden");
+	document.getElementById("bannerMessage").classList.add("hidden");
+	document.getElementById("inlineCheckbox1").checked = false;
+	document.getElementById("inlineCheckbox2").checked = false;
+	document.getElementById("inlineCheckbox4").checked = false;
+	document.getElementById("inlineCheckbox3").checked = false;
+	document.getElementById("inlineCheckbox5").value = 1;
+	document.getElementById("price2").value = 0;
+	document.getElementById("price3").value = 0;
+}
+
+function Clear1(){
+	document.getElementById("gridCheck2").checked = false;
+	document.getElementById("gridCheck3").checked = false;
+	document.getElementById("hidden1").classList.remove("hidden");
+	document.getElementById("hidden2").classList.add("hidden");
+	document.getElementById("inlineCheckbox4").checked = true;
+	document.getElementById("inlineCheckbox2").checked = false;
+	document.getElementById("inlineCheckbox3").checked = false;
+	document.getElementById("inlineCheckbox5").value = 2;
+	document.getElementById("price3").value = 0;
+}
+
+function Clear2(){
+	document.getElementById("gridCheck1").checked = false;
+	document.getElementById("gridCheck3").checked = false;
+	document.getElementById("hidden2").classList.remove("hidden");
+	document.getElementById("hidden1").classList.add("hidden");
+	document.getElementById("inlineCheckbox4").checked = false;
+	document.getElementById("inlineCheckbox2").checked = true;
+	document.getElementById("inlineCheckbox3").checked = false;
+	document.getElementById("inlineCheckbox5").value = 3;
+	document.getElementById("price2").value = 0;
+
+}
+
+function Clear3(){
+	document.getElementById("gridCheck2").checked = false;
+	document.getElementById("gridCheck1").checked = false;
+	document.getElementById("hidden1").classList.add("hidden");
+	document.getElementById("hidden2").classList.add("hidden");
+	document.getElementById("inlineCheckbox4").checked = false;
+	document.getElementById("inlineCheckbox2").checked = false;
+	document.getElementById("inlineCheckbox3").checked = true;
+}

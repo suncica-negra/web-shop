@@ -1,0 +1,135 @@
+<div class="margin">
+   <div class=" mb-3 row1">
+      <div class="themed-grid-col">
+         <form action="/edit/{{ productId }}?_method=PUT" method="POST">
+            <div class="form-group row">
+               <label for="inputEmail3" class="col-sm-2 col-form-label">Product name</label>
+               <div class="col-sm-10">
+                  <input name="name" type="text" class="form-control" id="inputEmail3" placeholder="Product name" value="{{ name }}" required>
+               </div>
+            </div>
+            <div class="form-group row">
+               <label for="inputPassword3" class="col-sm-2 col-form-label">Link to image</label>
+               <div class="col-sm-10">
+                  <input name="link" type="text" class="form-control" id="inputPassword3" placeholder="Link to image" value="{{ link }}" required>
+               </div>
+            </div>
+            <div class="form-group row">
+               <label class="col-sm-2 col-form-label" for="exampleFormControlTextarea1">Description</label>
+               <div class="col-sm-10">
+                  <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Product description" required>{{ description }}</textarea>
+               </div>
+            </div>
+            <div class="form-group row">
+               <label for="inputPassword3" class="col-sm-2 col-form-label">Regular price</label>
+               <div class="col-sm-4">
+                  <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                  <div class="input-group mb-2">
+                     <div class="input-group-prepend">
+                        <div class="input-group-text">€</div>
+                     </div>
+                     <input name="price" type="number" step="0.01" min="0" oninput="validity.valid||(value='');" class="form-control" id="inlineFormInputGroup" placeholder="Price of one product" value="{{ price }}" required>
+                  </div>
+               </div>
+            </div>
+            <fieldset class="form-group">
+               <div class="row">
+                  <legend class="col-form-label col-sm-2 pt-0">Is the product on sale?</legend>
+                  <div class="col-sm-10">
+                     <div class="form-check">
+                        <input onclick="NoAction()" class="form-check-input" type="radio" name="iden" id="gridRadios1" checked>
+                        <label class="form-check-label" for="gridRadios1">
+                        No
+                        </label>
+                     </div>
+                     <div class="form-check">
+                        <input class="form-check-input" type="radio" name="iden" id="gridRadios2" onclick="Action()">
+                        <label class="form-check-label" for="gridRadios2">
+                        Yes
+                        </label>
+                     </div>
+                  </div>
+               </div>
+            </fieldset>
+            <div class="form-group row hidden" id="hidden">
+               <div class="col-sm-2">Type of sale</div>
+               <div class="col-sm-10">
+                  <div class="form-check">
+                     <input class="form-check-input" type="checkbox" id="gridCheck1" onclick="Clear1()">
+                     <label class="form-check-label" for="gridCheck1">
+                     Second product for a lower price
+                     </label>
+                  </div>
+                  <div class="form-check">
+                     <input class="form-check-input" type="checkbox" id="gridCheck2" onclick="Clear2()">
+                     <label class="form-check-label" for="gridCheck2">
+                     Third product for a lower price
+                     </label>
+                  </div>
+                  <div class="form-check hidden">
+                     <input class="form-check-input" type="checkbox" id="gridCheck3" onclick="Clear3()">
+                     <label class="form-check-label" for="gridCheck3">
+                     2 + 1 free
+                     </label>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group row hidden" id="hidden1">
+               <label for="inputPassword3" class="col-sm-2 col-form-label">New price</label>
+               <div class="col-sm-4">
+                  <div class="input-group mb-2">
+                     <div class="input-group-prepend">
+                        <div class="input-group-text">€</div>
+                     </div>
+                     <input id="price2" name="price2" type="number" step="0.01" min="0" oninput="validity.valid||(value='');" class="form-control" placeholder="New price with discount">
+                  </div>
+               </div>
+            </div>
+            <div class="form-group row hidden" id="hidden2">
+               <label for="inputPassword3" class="col-sm-2 col-form-label">New price</label>
+               <div class="col-sm-4">
+                  <div class="input-group mb-2">
+                     <div class="input-group-prepend">
+                        <div class="input-group-text">€</div>
+                     </div>
+                     <input id="price3" name="price3" type="number" step="0.01" min="0" oninput="validity.valid||(value='');" class="form-control" placeholder="New price with discount">
+                  </div>
+               </div>
+            </div>
+            <div class="form-group row hidden" id="bannerMessage">
+               <label for="inputEmail3" class="col-sm-2 col-form-label">Sale message</label>
+               <div class="col-sm-10">
+                  <input name="bannerMessage" type="text" class="form-control" placeholder="Message for customers related to the sale">
+               </div>
+            </div>
+            <div class="hidden">
+               <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="ACTION" name="action">
+                  <label class="form-check-label" for="inlineCheckbox1">ACTION</label>
+               </div>
+               <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="true" name="action2">
+                  <label class="form-check-label" for="inlineCheckbox4">action2 = true</label>
+               </div>
+               <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="true" name="action3">
+                  <label class="form-check-label" for="inlineCheckbox2">action3 = true</label>
+               </div>
+               <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                  <label class="form-check-label" for="inlineCheckbox3">2+1</label>
+               </div>
+               <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="number" id="inlineCheckbox5" name="identifier" value="1">
+                  <label class="form-check-label" for="inlineCheckbox5">identifier</label>
+               </div>
+            </div>
+            <div class="form-group row">
+               <div class="col-sm-10">
+                  <button type="submit" class="btn btn-primary">Edit</button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
