@@ -33,3 +33,11 @@ Aplikacija je funkcionalna i online je: https://my-awesome-web-shop.herokuapp.co
 ## PROIZVOD / single product page
 
 ![alt text](https://github.com/suncica-negra/web-shop/blob/master/public/product.png)
+
+## MOJI PROIZVODI / my products
+
+![alt text](https://github.com/suncica-negra/web-shop/blob/master/public/my-products.png)
+
+## FORMA ZA UNOS PROIZVODA / product entry form
+
+![alt text](https://github.com/suncica-negra/web-shop/blob/master/public/new-product.png)
